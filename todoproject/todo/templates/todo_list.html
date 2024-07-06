@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="GET" action="{% url 'add_task'%}">
+    <div class="block-style">
+        <div class="block-item1"><button  type="submit">Add task</button></div>
+        <a class="block-item2" href="{% url 'index' %}">All Tasks</a>
+        <a class="block-item3" href="{% url 'incomplete_tasks' %}">Incomplete Tasks</a>
+    </div>
+</form>
+<ul >
+    <h1> {{ title2 }} </h1>
+    {% for task in tasks %}
+    <li class="list-style">
+        <form class="list-item1" method="POST" action="{% url 'completed_task' task.id%}">
+            {% csrf_token %}
+            <input type="checkbox"
+                {% if task.is_done %}
+                checked
+                {% endif %}
+                onchange="this.form.submit()">
+            </input>
+        </form>
+        <div class="list-item2"> {{ task.text }} </div>
+        <form method="GET" action="{% url 'edit_task' task.id%}">
+            {% csrf_token %}
+            <button type="Submit">Edit</button>
+        </form>
+
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
