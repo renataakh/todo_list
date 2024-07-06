@@ -1,9 +1,9 @@
 from django.db import models
 
+
 # Create your models here.
 
 class todo_list(models.Model):
-    objects = None
     text = models.CharField(max_length=50)
     time_create = models.DateTimeField(auto_now_add=True)
     time_update = models.DateTimeField(auto_now=True)
