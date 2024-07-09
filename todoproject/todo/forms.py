@@ -1,9 +1,11 @@
 from django import forms
-from .models import todo_list
+from .models import TodoList
+
 
 class TaskForm(forms.ModelForm):
+
     class Meta:
-        model = todo_list
+        model = TodoList
         fields = ['text']
         labels = {
             'text': 'Task description'
@@ -11,4 +13,3 @@ class TaskForm(forms.ModelForm):
         widgets = {
             'text': forms.TextInput(attrs={'size': 50}),
         }
-
